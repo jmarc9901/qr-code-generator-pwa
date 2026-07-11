@@ -1092,10 +1092,6 @@ class QRGeneratorApp {
 			this.exportQR('pdf');
 		});
 
-		// Donation buttons
-		this.setupDonationButtons();
-
-		// Set current year
 		this.setCurrentYear();
 
 		// Show scanner button
@@ -1267,13 +1263,6 @@ class QRGeneratorApp {
 		}
 		this.showToast('success', this.t('customize.applied'));
 	}
-
-	// Setup donation buttons
-	setupDonationButtons() {
-		// Donation button is now a simple link to Buy Me a Coffee
-		// No additional JavaScript needed
-	}
-
 
 	// Load QRCode library dynamically
 	async loadQRCodeLibrary() {
