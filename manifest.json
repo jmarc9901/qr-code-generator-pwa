@@ -1,0 +1,83 @@
+{
+	"name": "QR Generator Offline",
+	"short_name": "QR Generator",
+	"description": "Offline QR Code Generator - Create QR codes for URLs, contacts, WiFi and more",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#2563eb",
+	"orientation": "portrait-primary",
+	"scope": "/",
+	"lang": "en",
+	"categories": ["utilities", "productivity"],
+	"icons": [
+		{
+			"src": "assets/icons/icon-16x16.png",
+			"sizes": "16x16",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "assets/icons/icon-32x32.png",
+			"sizes": "32x32",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "assets/icons/icon-180x180.png",
+			"sizes": "180x180",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "assets/icons/icon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "assets/icons/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "Generate URL QR",
+			"short_name": "URL QR",
+			"description": "Create QR for a URL",
+			"url": "/?type=url",
+			"icons": [
+				{
+					"src": "assets/icons/icon-192x192.png",
+					"sizes": "96x96"
+				}
+			]
+		},
+		{
+			"name": "Generate WiFi QR",
+			"short_name": "WiFi QR",
+			"description": "Create QR for WiFi configuration",
+			"url": "/?type=wifi",
+			"icons": [
+				{
+					"src": "assets/icons/icon-192x192.png",
+					"sizes": "96x96"
+				}
+			]
+		},
+		{
+			"name": "Generate Contact QR",
+			"short_name": "Contact QR",
+			"description": "Create QR for contact information",
+			"url": "/?type=vcard",
+			"icons": [
+				{
+					"src": "assets/icons/icon-192x192.png",
+					"sizes": "96x96"
+				}
+			]
+		}
+	]
+}

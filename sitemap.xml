@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://qr-generator.com/</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://qr-generator.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://qr-generator.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://qr-generator.com/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://qr-generator.com/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://qr-generator.com/" />
+  </url>
+</urlset>
