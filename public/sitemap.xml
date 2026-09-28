@@ -10,6 +10,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=es" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=pt" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=de" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jmarc9901.github.io/qr-code-generator-pwa/" />
   </url>
 </urlset>

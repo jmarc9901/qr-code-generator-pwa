@@ -15,5 +15,5 @@ body:
       description: |
         - [ ] Code follows existing style
         - [ ] `npm run lint` passes
-        - [ ] i18n keys added to all 4 languages
+        - [ ] i18n keys added to all 5 languages
         - [ ] Tested locally with `npx serve public`

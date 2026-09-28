@@ -19,7 +19,7 @@
 - **Export**: Download as PNG, SVG, or PDF.
 - **History**: Stores last 20 generated QR codes in localStorage.
 - **Dark/Light theme**: Toggle with persistent preference.
-- **i18n**: English, Spanish, Portuguese, French.
+- **i18n**: English, Spanish, Portuguese, French, German.
 - **Privacy-first**: No data sent to servers. No analytics. No tracking. Everything runs client-side.
 - **Keyboard accessible**: ARIA labels, semantic HTML, full keyboard navigation.
 

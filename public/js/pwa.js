@@ -121,7 +121,7 @@ class PWA {
 	// Show update notification
 	showUpdateNotification() {
 		if (window.qrApp) {
-			window.qrApp.showToast('info', 'Nueva versión disponible. Recarga la página para actualizar.');
+			window.qrApp.showToast('info', window.qrApp.t('pwa.updateAvailable'));
 		}
 	}
 
@@ -198,14 +198,14 @@ class PWA {
 		window.addEventListener('online', () => {
 			console.log('Network is online');
 			if (window.qrApp) {
-				window.qrApp.showToast('success', 'Conexión restaurada');
+				window.qrApp.showToast('success', window.qrApp.t('pwa.online'));
 			}
 		});
 
 		window.addEventListener('offline', () => {
 			console.log('Network is offline');
 			if (window.qrApp) {
-				window.qrApp.showToast('warning', 'Sin conexión a internet. La app funciona offline.');
+				window.qrApp.showToast('warning', window.qrApp.t('pwa.offline'));
 			}
 		});
 	}
@@ -297,7 +297,7 @@ class PWA {
 		return {
 			name: 'QR Generator',
 			version: '1.0.0',
-			description: 'Generador de códigos QR offline',
+			description: 'Offline QR code generator',
 			author: 'QR Generator Team',
 			repository: 'https://github.com/qr-generator/app'
 		};

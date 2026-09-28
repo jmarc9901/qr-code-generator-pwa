@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- German translation (`de`), selectable in the language menu and through `?lang=de`
+
+### Fixed
+- Form labels, placeholders, dropdown options and validation messages were always Spanish, even in the English view (visible in the WiFi form). They now use translation keys in all four languages (en, es, pt, fr), with English fallbacks in `qr-types.js`
+- Form title and share text now use the translated QR type name
+- Update/online/offline toasts in `pwa.js` are translated
+- Batch QR type dropdown is translated
+- Saved language choice is now restored on load; `?lang=` links (used by the hreflang tags) now work
+- Changing the language with a form open now re-renders the form and keeps the entered values
+
 ## [1.0.1] - 2026-07-11
 
 ### Fixed

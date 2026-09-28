@@ -1,11 +1,13 @@
 // QR Types Configuration
-// Note: Names and descriptions are now translated via the translation system
-// Translation keys follow the pattern: qrType.[type].name and qrType.[type].description
+// The strings below are English fallbacks. The UI translates them via the translation files:
+//   qrType.[type].name / qrType.[type].description
+//   qrType.[type].field.[field].label / .placeholder
+//   qrType.[type].field.[field].option.[value]
 const QR_TYPES = {
 	url: {
 		id: 'url',
 		name: 'URL', // Translated via qrType.url.name
-		description: 'Enlace a una página web', // Translated via qrType.url.description
+		description: 'Web page link', // Translated via qrType.url.description
 		icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1',
 		category: 'web',
 		fields: [
@@ -13,7 +15,7 @@ const QR_TYPES = {
 				name: 'url',
 				label: 'URL',
 				type: 'url',
-				placeholder: 'https://ejemplo.com',
+				placeholder: 'https://example.com',
 				required: true
 			}
 		],
@@ -22,16 +24,16 @@ const QR_TYPES = {
 
 	text: {
 		id: 'text',
-		name: 'Texto', // Translated via qrType.text.name
-		description: 'Texto libre personalizado', // Translated via qrType.text.description
+		name: 'Text', // Translated via qrType.text.name
+		description: 'Custom free text', // Translated via qrType.text.description
 		icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
 		category: 'general',
 		fields: [
 			{
 				name: 'text',
-				label: 'Texto',
+				label: 'Text',
 				type: 'textarea',
-				placeholder: 'Escribe tu texto aquí...',
+				placeholder: 'Write your text here...',
 				required: true,
 				rows: 4
 			}
@@ -42,7 +44,7 @@ const QR_TYPES = {
 	email: {
 		id: 'email',
 		name: 'Email', // Translated via qrType.email.name
-		description: 'Dirección de correo electrónico', // Translated via qrType.email.description
+		description: 'Email address', // Translated via qrType.email.description
 		icon: 'M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
 		category: 'communication',
 		fields: [
@@ -50,20 +52,20 @@ const QR_TYPES = {
 				name: 'email',
 				label: 'Email',
 				type: 'email',
-				placeholder: 'usuario@ejemplo.com',
+				placeholder: 'user@example.com',
 				required: true
 			},
 			{
 				name: 'subject',
-				label: 'Asunto',
+				label: 'Subject',
 				type: 'text',
-				placeholder: 'Asunto del email'
+				placeholder: 'Email subject'
 			},
 			{
 				name: 'body',
-				label: 'Cuerpo',
+				label: 'Body',
 				type: 'textarea',
-				placeholder: 'Contenido del email...',
+				placeholder: 'Email content...',
 				rows: 3
 			}
 		],
@@ -80,22 +82,22 @@ const QR_TYPES = {
 	sms: {
 		id: 'sms',
 		name: 'SMS', // Translated via qrType.sms.name
-		description: 'Mensaje de texto', // Translated via qrType.sms.description
+		description: 'Text message', // Translated via qrType.sms.description
 		icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
 		category: 'communication',
 		fields: [
 			{
 				name: 'phone',
-				label: 'Número de teléfono',
+				label: 'Phone number',
 				type: 'tel',
-				placeholder: '+53 5 123 4567',
+				placeholder: '+1 555 123 4567',
 				required: true
 			},
 			{
 				name: 'message',
-				label: 'Mensaje',
+				label: 'Message',
 				type: 'textarea',
-				placeholder: 'Escribe tu mensaje...',
+				placeholder: 'Write your message...',
 				required: true,
 				rows: 3
 			}
@@ -106,22 +108,22 @@ const QR_TYPES = {
 	whatsapp: {
 		id: 'whatsapp',
 		name: 'WhatsApp', // Translated via qrType.whatsapp.name
-		description: 'Mensaje de WhatsApp', // Translated via qrType.whatsapp.description
+		description: 'WhatsApp message', // Translated via qrType.whatsapp.description
 		icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
 		category: 'communication',
 		fields: [
 			{
 				name: 'phone',
-				label: 'Número de teléfono',
+				label: 'Phone number',
 				type: 'tel',
-				placeholder: '+53 5 123 4567',
+				placeholder: '+1 555 123 4567',
 				required: true
 			},
 			{
 				name: 'message',
-				label: 'Mensaje',
+				label: 'Message',
 				type: 'textarea',
-				placeholder: 'Escribe tu mensaje...',
+				placeholder: 'Write your message...',
 				rows: 3
 			}
 		],
@@ -137,22 +139,22 @@ const QR_TYPES = {
 	telegram: {
 		id: 'telegram',
 		name: 'Telegram', // Translated via qrType.telegram.name
-		description: 'Mensaje de Telegram', // Translated via qrType.telegram.description
+		description: 'Telegram message', // Translated via qrType.telegram.description
 		icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
 		category: 'communication',
 		fields: [
 			{
 				name: 'username',
-				label: 'Usuario o número',
+				label: 'Username or number',
 				type: 'text',
-				placeholder: '@usuario o +53 5 123 4567',
+				placeholder: '@username or +1 555 123 4567',
 				required: true
 			},
 			{
 				name: 'message',
-				label: 'Mensaje',
+				label: 'Message',
 				type: 'textarea',
-				placeholder: 'Escribe tu mensaje...',
+				placeholder: 'Write your message...',
 				rows: 3
 			}
 		],
@@ -167,16 +169,16 @@ const QR_TYPES = {
 
 	call: {
 		id: 'call',
-		name: 'Llamada', // Translated via qrType.call.name
-		description: 'Realizar una llamada telefónica', // Translated via qrType.call.description
+		name: 'Call', // Translated via qrType.call.name
+		description: 'Make a phone call', // Translated via qrType.call.description
 		icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
 		category: 'communication',
 		fields: [
 			{
 				name: 'phone',
-				label: 'Número de teléfono',
+				label: 'Phone number',
 				type: 'tel',
-				placeholder: '+53 5 123 4567',
+				placeholder: '+1 555 123 4567',
 				required: true
 			}
 		],
@@ -186,41 +188,41 @@ const QR_TYPES = {
 	wifi: {
 		id: 'wifi',
 		name: 'WiFi', // Translated via qrType.wifi.name
-		description: 'Configuración de red WiFi', // Translated via qrType.wifi.description
+		description: 'WiFi network configuration', // Translated via qrType.wifi.description
 		icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0',
 		category: 'network',
 		fields: [
 			{
 				name: 'ssid',
-				label: 'Nombre de la red (SSID)',
+				label: 'Network name (SSID)',
 				type: 'text',
-				placeholder: 'MiWiFi',
+				placeholder: 'MyWiFi',
 				required: true
 			},
 			{
 				name: 'password',
-				label: 'Contraseña',
+				label: 'Password',
 				type: 'password',
-				placeholder: 'Contraseña WiFi'
+				placeholder: 'WiFi password'
 			},
 			{
 				name: 'encryption',
-				label: 'Tipo de encriptación',
+				label: 'Encryption type',
 				type: 'select',
 				options: [
 					{ value: 'WPA', label: 'WPA/WPA2/WPA3' },
 					{ value: 'WEP', label: 'WEP' },
-					{ value: 'nopass', label: 'Sin contraseña' }
+					{ value: 'nopass', label: 'No password' }
 				],
 				default: 'WPA'
 			},
 			{
 				name: 'hidden',
-				label: 'Red oculta',
+				label: 'Hidden network',
 				type: 'select',
 				options: [
 					{ value: 'false', label: 'No' },
-					{ value: 'true', label: 'Sí' }
+					{ value: 'true', label: 'Yes' }
 				],
 				default: 'false'
 			}
@@ -239,54 +241,54 @@ const QR_TYPES = {
 
 	vcard: {
 		id: 'vcard',
-		name: 'Contacto', // Translated via qrType.vcard.name
-		description: 'Información de contacto (vCard)', // Translated via qrType.vcard.description
+		name: 'Contact', // Translated via qrType.vcard.name
+		description: 'Contact information (vCard)', // Translated via qrType.vcard.description
 		icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
 		category: 'contact',
 		fields: [
 			{
 				name: 'firstName',
-				label: 'Nombre',
+				label: 'First name',
 				type: 'text',
-				placeholder: 'Juan',
+				placeholder: 'John',
 				required: true
 			},
 			{
 				name: 'lastName',
-				label: 'Apellido',
+				label: 'Last name',
 				type: 'text',
-				placeholder: 'Pérez',
+				placeholder: 'Doe',
 				required: true
 			},
 			{
 				name: 'phone',
-				label: 'Teléfono',
+				label: 'Phone',
 				type: 'tel',
-				placeholder: '+53 5 123 4567'
+				placeholder: '+1 555 123 4567'
 			},
 			{
 				name: 'email',
 				label: 'Email',
 				type: 'email',
-				placeholder: 'juan@ejemplo.com'
+				placeholder: 'john@example.com'
 			},
 			{
 				name: 'company',
-				label: 'Empresa',
+				label: 'Company',
 				type: 'text',
-				placeholder: 'Mi Empresa'
+				placeholder: 'My Company'
 			},
 			{
 				name: 'title',
-				label: 'Cargo',
+				label: 'Job title',
 				type: 'text',
-				placeholder: 'Desarrollador'
+				placeholder: 'Developer'
 			},
 			{
 				name: 'website',
-				label: 'Sitio web',
+				label: 'Website',
 				type: 'url',
-				placeholder: 'https://ejemplo.com'
+				placeholder: 'https://example.com'
 			}
 		],
 		generate: (data) => {
@@ -306,14 +308,14 @@ const QR_TYPES = {
 
 	location: {
 		id: 'location',
-		name: 'Ubicación', // Translated via qrType.location.name
-		description: 'Coordenadas GPS', // Translated via qrType.location.description
+		name: 'Location', // Translated via qrType.location.name
+		description: 'GPS coordinates', // Translated via qrType.location.description
 		icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z',
 		category: 'location',
 		fields: [
 			{
 				name: 'latitude',
-				label: 'Latitud',
+				label: 'Latitude',
 				type: 'number',
 				placeholder: '23.1136',
 				step: '0.0001',
@@ -321,7 +323,7 @@ const QR_TYPES = {
 			},
 			{
 				name: 'longitude',
-				label: 'Longitud',
+				label: 'Longitude',
 				type: 'number',
 				placeholder: '-82.3666',
 				step: '0.0001',
@@ -329,9 +331,9 @@ const QR_TYPES = {
 			},
 			{
 				name: 'name',
-				label: 'Nombre del lugar',
+				label: 'Place name',
 				type: 'text',
-				placeholder: 'Plaza de la Revolución'
+				placeholder: 'Revolution Square'
 			}
 		],
 		generate: (data) => {
@@ -345,41 +347,41 @@ const QR_TYPES = {
 
 	calendar: {
 		id: 'calendar',
-		name: 'Evento', // Translated via qrType.calendar.name
-		description: 'Evento de calendario', // Translated via qrType.calendar.description
+		name: 'Event', // Translated via qrType.calendar.name
+		description: 'Calendar event', // Translated via qrType.calendar.description
 		icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
 		category: 'events',
 		fields: [
 			{
 				name: 'title',
-				label: 'Título del evento',
+				label: 'Event title',
 				type: 'text',
-				placeholder: 'Reunión importante',
+				placeholder: 'Important meeting',
 				required: true
 			},
 			{
 				name: 'startDate',
-				label: 'Fecha de inicio',
+				label: 'Start date',
 				type: 'datetime-local',
 				required: true
 			},
 			{
 				name: 'endDate',
-				label: 'Fecha de fin',
+				label: 'End date',
 				type: 'datetime-local'
 			},
 			{
 				name: 'description',
-				label: 'Descripción',
+				label: 'Description',
 				type: 'textarea',
-				placeholder: 'Descripción del evento...',
+				placeholder: 'Event description...',
 				rows: 3
 			},
 			{
 				name: 'location',
-				label: 'Ubicación',
+				label: 'Location',
 				type: 'text',
-				placeholder: 'Oficina principal'
+				placeholder: 'Main office'
 			}
 		],
 		generate: (data) => {
@@ -407,29 +409,29 @@ const QR_TYPES = {
 	bitcoin: {
 		id: 'bitcoin',
 		name: 'Bitcoin', // Translated via qrType.bitcoin.name
-		description: 'Dirección de Bitcoin para pagos', // Translated via qrType.bitcoin.description
+		description: 'Bitcoin address for payments', // Translated via qrType.bitcoin.description
 		icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
 		category: 'payments',
 		fields: [
 			{
 				name: 'address',
-				label: 'Dirección Bitcoin',
+				label: 'Bitcoin address',
 				type: 'text',
 				placeholder: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
 				required: true
 			},
 			{
 				name: 'amount',
-				label: 'Cantidad (BTC)',
+				label: 'Amount (BTC)',
 				type: 'number',
 				placeholder: '0.001',
 				step: '0.00000001'
 			},
 			{
 				name: 'label',
-				label: 'Etiqueta',
+				label: 'Label',
 				type: 'text',
-				placeholder: 'Pago por servicios'
+				placeholder: 'Payment for services'
 			}
 		],
 		generate: (data) => {
@@ -445,20 +447,20 @@ const QR_TYPES = {
 	ethereum: {
 		id: 'ethereum',
 		name: 'Ethereum', // Translated via qrType.ethereum.name
-		description: 'Dirección de Ethereum para pagos', // Translated via qrType.ethereum.description
+		description: 'Ethereum address for payments', // Translated via qrType.ethereum.description
 		icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
 		category: 'payments',
 		fields: [
 			{
 				name: 'address',
-				label: 'Dirección Ethereum',
+				label: 'Ethereum address',
 				type: 'text',
 				placeholder: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6',
 				required: true
 			},
 			{
 				name: 'amount',
-				label: 'Cantidad (ETH)',
+				label: 'Amount (ETH)',
 				type: 'number',
 				placeholder: '0.1',
 				step: '0.000000000000000001'
@@ -476,40 +478,40 @@ const QR_TYPES = {
 	paypal: {
 		id: 'paypal',
 		name: 'PayPal', // Translated via qrType.paypal.name
-		description: 'Enlace de pago PayPal', // Translated via qrType.paypal.description
+		description: 'PayPal payment link', // Translated via qrType.paypal.description
 		icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
 		category: 'payments',
 		fields: [
 			{
 				name: 'email',
-				label: 'Email de PayPal',
+				label: 'PayPal email',
 				type: 'email',
-				placeholder: 'usuario@paypal.com',
+				placeholder: 'user@paypal.com',
 				required: true
 			},
 			{
 				name: 'amount',
-				label: 'Cantidad',
+				label: 'Amount',
 				type: 'number',
 				placeholder: '10.00',
 				step: '0.01'
 			},
 			{
 				name: 'currency',
-				label: 'Moneda',
+				label: 'Currency',
 				type: 'select',
 				options: [
-					{ value: 'USD', label: 'USD - Dólar estadounidense' },
+					{ value: 'USD', label: 'USD - US dollar' },
 					{ value: 'EUR', label: 'EUR - Euro' },
-					{ value: 'CUP', label: 'CUP - Peso cubano' }
+					{ value: 'CUP', label: 'CUP - Cuban peso' }
 				],
 				default: 'USD'
 			},
 			{
 				name: 'description',
-				label: 'Descripción',
+				label: 'Description',
 				type: 'text',
-				placeholder: 'Pago por servicios'
+				placeholder: 'Payment for services'
 			}
 		],
 		generate: (data) => {
@@ -523,12 +525,12 @@ const QR_TYPES = {
 };
 
 const QR_CATEGORIES = {
-	web: { name: 'Web y Enlaces', icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9' },
-	communication: { name: 'Comunicación', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8' },
-	network: { name: 'Redes', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01' },
-	contact: { name: 'Contactos', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
-	location: { name: 'Ubicación', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' },
-	events: { name: 'Eventos', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
-	payments: { name: 'Pagos', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z' },
+	web: { name: 'Web and Links', icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9' },
+	communication: { name: 'Communication', icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8' },
+	network: { name: 'Networks', icon: 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01' },
+	contact: { name: 'Contacts', icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
+	location: { name: 'Location', icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' },
+	events: { name: 'Events', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
+	payments: { name: 'Payments', icon: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z' },
 	general: { name: 'General', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' }
 };

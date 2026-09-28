@@ -27,6 +27,7 @@
 	<link rel="alternate" hreflang="es" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=es">
 	<link rel="alternate" hreflang="pt" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=pt">
 	<link rel="alternate" hreflang="fr" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=fr">
+	<link rel="alternate" hreflang="de" href="https://jmarc9901.github.io/qr-code-generator-pwa/?lang=de">
 	<link rel="alternate" hreflang="x-default" href="https://jmarc9901.github.io/qr-code-generator-pwa/">
 	
 	<!-- Sitemap -->
@@ -255,6 +256,7 @@
 						<option value="es">Español</option>
 						<option value="pt">Português</option>
 						<option value="fr">Français</option>
+						<option value="de">Deutsch</option>
 					</select>
 					<button class="nav-btn" id="installBtn" style="display: none;" title="Install PWA application" aria-label="Install application">
 						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -339,12 +341,12 @@
 						<div class="form-group">
 							<label for="batchQRType" data-i18n="batch.type">QR Type:</label>
 							<select id="batchQRType" class="form-control">
-								<option value="url">URL</option>
-								<option value="text">Text</option>
-								<option value="email">Email</option>
-								<option value="sms">SMS</option>
-								<option value="wifi">WiFi</option>
-								<option value="vcard">Contact</option>
+								<option value="url" data-i18n="qrType.url.name">URL</option>
+								<option value="text" data-i18n="qrType.text.name">Text</option>
+								<option value="email" data-i18n="qrType.email.name">Email</option>
+								<option value="sms" data-i18n="qrType.sms.name">SMS</option>
+								<option value="wifi" data-i18n="qrType.wifi.name">WiFi</option>
+								<option value="vcard" data-i18n="qrType.vcard.name">Contact</option>
 							</select>
 						</div>
 						<div class="form-group">

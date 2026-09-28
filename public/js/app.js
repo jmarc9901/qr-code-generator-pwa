@@ -7,7 +7,7 @@ class QRGeneratorApp {
 		this.currentQRData = null;
 		this.generatedQR = null;
 		this.history = this.loadHistory();
-		this.currentLanguage = this.getBrowserLanguage();
+		this.currentLanguage = this.getInitialLanguage();
 		this.translations = {};
 		
 		// Import utility functions
@@ -26,13 +26,26 @@ class QRGeneratorApp {
 		this.loadTheme();
 	}
 
-	// Get browser language
-	getBrowserLanguage() {
-		const lang = navigator.language || navigator.userLanguage;
-		if (lang.startsWith('es')) return 'es';
-		if (lang.startsWith('pt')) return 'pt';
-		if (lang.startsWith('fr')) return 'fr';
-		return 'en'; // default to English
+	// Initial language: ?lang= parameter, then saved choice, then browser language
+	getInitialLanguage() {
+		const supported = ['en', 'es', 'pt', 'fr', 'de'];
+
+		try {
+			const fromUrl = new URLSearchParams(window.location.search).get('lang');
+			if (supported.includes(fromUrl)) return fromUrl;
+		} catch (e) {
+			console.error('Error reading language from URL:', e);
+		}
+
+		try {
+			const saved = localStorage.getItem('language');
+			if (supported.includes(saved)) return saved;
+		} catch (e) {
+			console.error('Error reading language preference:', e);
+		}
+
+		const browserLang = (navigator.language || navigator.userLanguage || '').split('-')[0].toLowerCase();
+		return supported.includes(browserLang) ? browserLang : 'en'; // default to English
 	}
 
 	// Load translations
@@ -210,6 +223,31 @@ class QRGeneratorApp {
 		return translation;
 	}
 
+	// Translation lookup that falls back to the English default in QR_TYPES
+	tOr(key, fallback) {
+		return this.translations[key] || fallback;
+	}
+
+	getTypeName(type) {
+		return this.tOr(`qrType.${type.id}.name`, type.name);
+	}
+
+	getTypeDescription(type) {
+		return this.tOr(`qrType.${type.id}.description`, type.description);
+	}
+
+	getFieldLabel(type, field) {
+		return this.tOr(`qrType.${type.id}.field.${field.name}.label`, field.label);
+	}
+
+	getFieldPlaceholder(type, field) {
+		return this.tOr(`qrType.${type.id}.field.${field.name}.placeholder`, field.placeholder || '');
+	}
+
+	getOptionLabel(type, field, option) {
+		return this.tOr(`qrType.${type.id}.field.${field.name}.option.${option.value}`, option.label);
+	}
+
 	// Update UI language
 	updateUILanguage() {
 		// Update the HTML lang attribute
@@ -268,7 +306,25 @@ class QRGeneratorApp {
 		this.updateUILanguage();
 		// Re-render QR types to update their names and descriptions
 		this.renderQRTypes();
-		
+
+		// Re-render an open form in the new language without losing what was typed
+		if (this.currentQRType) {
+			const selectedCard = document.querySelector(`[data-type="${this.currentQRType.id}"]`);
+			if (selectedCard) selectedCard.classList.add('selected');
+
+			const form = document.getElementById('qrForm');
+			const values = {};
+			this.currentQRType.fields.forEach(field => {
+				const input = form.elements[field.name];
+				if (input) values[field.name] = input.value;
+			});
+			this.renderForm();
+			this.currentQRType.fields.forEach(field => {
+				const input = form.elements[field.name];
+				if (input && field.name in values) input.value = values[field.name];
+			});
+		}
+
 		// Save language preference
 		try {
 			localStorage.setItem('language', lang);
@@ -298,10 +354,8 @@ class QRGeneratorApp {
 		card.setAttribute('role', 'button'); // Accessibility
 		
 		// Use translation keys for name and description
-		const typeNameKey = `qrType.${type.id}.name`;
-		const typeDescKey = `qrType.${type.id}.description`;
-		const typeName = this.translations[typeNameKey] || type.name;
-		const typeDesc = this.translations[typeDescKey] || type.description;
+		const typeName = this.getTypeName(type);
+		const typeDesc = this.getTypeDescription(type);
 		
 		card.setAttribute('aria-label', this.t('qrType.cardLabel', { name: typeName, description: typeDesc })); // Accessibility
 
@@ -373,7 +427,7 @@ class QRGeneratorApp {
 		const form = document.getElementById('qrForm');
 		const title = document.getElementById('formTitle');
 
-		title.textContent = this.currentQRType.name;
+		title.textContent = this.getTypeName(this.currentQRType);
 		form.innerHTML = '';
 
 		this.currentQRType.fields.forEach(field => {
@@ -388,7 +442,7 @@ class QRGeneratorApp {
 
 		const label = document.createElement('label');
 		label.htmlFor = field.name;
-		label.textContent = field.label;
+		label.textContent = this.getFieldLabel(this.currentQRType, field);
 		if (field.required) {
 			label.innerHTML += ' <span style="color: var(--danger-color);">*</span>';
 		}
@@ -414,7 +468,7 @@ class QRGeneratorApp {
 				field.options.forEach(option => {
 					const optionElement = document.createElement('option');
 					optionElement.value = option.value;
-					optionElement.textContent = option.label;
+					optionElement.textContent = this.getOptionLabel(this.currentQRType, field, option);
 					if (option.value === field.default) {
 						optionElement.selected = true;
 					}
@@ -429,7 +483,7 @@ class QRGeneratorApp {
 		input.id = field.name;
 		input.name = field.name;
 		input.className = 'form-control';
-		input.placeholder = field.placeholder || '';
+		input.placeholder = this.getFieldPlaceholder(this.currentQRType, field);
 		input.required = field.required || false;
 
 		return input;
@@ -468,7 +522,7 @@ class QRGeneratorApp {
 	validateForm() {
 		// Use validation module if available
 		if (this.validation && this.validation.validateForm) {
-			const result = this.validation.validateForm(this.currentQRType, () => this.getFormData());
+			const result = this.validation.validateForm(this.currentQRType, () => this.getFormData(), this.getValidationContext());
 			if (!result.valid) {
 				this.showToast('error', result.message);
 				return false;
@@ -490,7 +544,7 @@ class QRGeneratorApp {
 
 				// Check required fields
 				if (field.required && (!value || value.trim() === '')) {
-					this.showToast('error', this.t('validation.required', { field: field.label }));
+					this.showToast('error', this.t('validation.required', { field: this.getFieldLabel(this.currentQRType, field) }));
 					return false;
 				}
 
@@ -507,11 +561,19 @@ class QRGeneratorApp {
 		}
 	}
 
+	// Translation helpers handed to the validation module
+	getValidationContext() {
+		return {
+			t: (key, params) => this.t(key, params),
+			label: (field) => this.getFieldLabel(this.currentQRType, field)
+		};
+	}
+
 	// Validate individual field
 	validateField(field, value) {
 		// Use validation module if available
 		if (this.validation && this.validation.validateField) {
-			const result = this.validation.validateField(field, value);
+			const result = this.validation.validateField(field, value, this.getValidationContext());
 			if (!result.valid) {
 				this.showToast('error', result.message);
 				return false;
@@ -524,7 +586,7 @@ class QRGeneratorApp {
 			case 'email': {
 				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 				if (!emailRegex.test(value)) {
-					this.showToast('error', this.t('validation.email', { field: field.label }));
+					this.showToast('error', this.t('validation.email', { field: this.getFieldLabel(this.currentQRType, field) }));
 					return false;
 				}
 				break;
@@ -533,21 +595,21 @@ class QRGeneratorApp {
 				try {
 					new URL(value);
 				} catch {
-					this.showToast('error', this.t('validation.url', { field: field.label }));
+					this.showToast('error', this.t('validation.url', { field: this.getFieldLabel(this.currentQRType, field) }));
 					return false;
 				}
 				break;
 			case 'tel': {
 				const phoneRegex = /^[+]?[0-9\s\-()]{7,}$/;
 				if (!phoneRegex.test(value)) {
-					this.showToast('error', this.t('validation.phone', { field: field.label }));
+					this.showToast('error', this.t('validation.phone', { field: this.getFieldLabel(this.currentQRType, field) }));
 					return false;
 				}
 				break;
 			}
 			case 'number':
 				if (isNaN(value) || value < (field.min || 0)) {
-					this.showToast('error', this.t('validation.number', { field: field.label }));
+					this.showToast('error', this.t('validation.number', { field: this.getFieldLabel(this.currentQRType, field) }));
 					return false;
 				}
 				break;
@@ -588,7 +650,7 @@ class QRGeneratorApp {
 			const qrImage = await this.createQRCode(qrData, options);
 
 			this.generatedQR = {
-				type: this.currentQRType.name,
+				type: this.getTypeName(this.currentQRType),
 				data: qrData,
 				image: qrImage,
 				timestamp: new Date().toISOString(),
@@ -906,7 +968,7 @@ class QRGeneratorApp {
 
 				await navigator.share({
 					title: 'QR Code',
-					text: `${this.t('qr.shareText')}: ${this.currentQRType.name}`,
+					text: `${this.t('qr.shareText')}: ${this.getTypeName(this.currentQRType)}`,
 					files: [file]
 				});
 			} catch (error) {
